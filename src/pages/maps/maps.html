@@ -3,7 +3,18 @@
     <ion-title>Google maps</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
+<ion-content padding class="outer-content">
   <div #map id="map"></div>
+  <ion-list>
+    <ion-list-header>
+      FILTRO
+    </ion-list-header>
+    <ion-item>
+      <ion-label class="distance">Distância: {{distance}} Metros</ion-label>
+      <ion-range min="500" max="20000" pin="true" step="500" snaps="true" [(ngModel)]="distance" color="primary">
+        <ion-label range-left>500</ion-label>
+        <ion-label range-right>20.000</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
 </ion-content>

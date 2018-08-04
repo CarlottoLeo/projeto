@@ -4,19 +4,21 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 declare var google;
 
-/**
-* https://developers.google.com/maps/documentation/javascript/adding-a-google-map
-* https://ionicframework.com/docs/native/geolocation/
-*/
 @IonicPage()
 @Component({
   selector: 'page-maps',
   templateUrl: 'maps.html',
 })
+
+
 export class MapsPage {
+
+  distance: number = 500;
   map: any;
 
   constructor(private geolocation: Geolocation) { }
+
+  public n: number = 1;
 
   ionViewDidLoad() {
     this.geolocation.getCurrentPosition()
@@ -50,22 +52,34 @@ export class MapsPage {
     var locations = [
       ['Eu', resp.coords.latitude, resp.coords.longitude, 4],
       ['<span>Eletricista</span>' + '<br>' + '<span>Disponivel</span>' + '<br>' + '<a href="##">Informações</a>', -27.6378422,-52.2723191, 3],
-      ['Encanador', -27.6398612,-52.274529, 2],
+      ['Encanador', -27.645949, -52.261069, 2],
       ['Mecânico', -27.6378712,-52.274329, 1]
     ];
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 18,
+      zoom: 15,
       center: new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
     var i;
 
+    var circulo;
+
     for (i = 0; i < locations.length; i++) {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map
+      });
+
+      circulo = new google.maps.Circle(
+      {
+          map: map,
+          center: new google.maps.LatLng(locations[0][1], locations[0][2]),
+          radius: this.distance, // 1000 metros
+          strokeColor: "blue",
+          fillColor: "blue",
+          fillOpacity: 0.1,
       });
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
