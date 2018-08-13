@@ -5,16 +5,35 @@
 </ion-header>
 <ion-content padding class="outer-content">
   <div #map id="map"></div>
-  <ion-list>
-    <ion-list-header>
-      FILTRO
-    </ion-list-header>
+  <div class="filtro">
+    <ion-list>
+      <ion-list-header>
+        FILTRO
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Selecionar o Profissional</ion-label>
+        <ion-select [(ngModel)]="toppings" multiple="true">
+          <ion-option>Mecânico</ion-option>
+          <ion-option>Encanador</ion-option>
+          <ion-option>Eletricista</ion-option>
+          <ion-option>Borracheiro</ion-option>
+          <ion-option>Pedreiro</ion-option>
+          <ion-option>Jardineiro</ion-option>
+        </ion-select>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label class="distance">Distância: {{distance}} Metros</ion-label>
+        <ion-range class="paddingTop" min="500" max="20000" pin="true" step="500" snaps="true" [(ngModel)]="distance" color="primary">
+          <ion-label range-left>500</ion-label>
+          <ion-label range-right>20.000</ion-label>
+        </ion-range>
+      </ion-item>
+    </ion-list>
     <ion-item>
-      <ion-label class="distance">Distância: {{distance}} Metros</ion-label>
-      <ion-range min="500" max="20000" pin="true" step="500" snaps="true" [(ngModel)]="distance" color="primary">
-        <ion-label range-left>500</ion-label>
-        <ion-label range-right>20.000</ion-label>
-      </ion-range>
+      <ion-label>Horário de Disponibilidade</ion-label>
+      <ion-datetime displayFormat="HH:mm a" [(ngModel)]="myDate"></ion-datetime>
     </ion-item>
-  </ion-list>
+    <button ion-button full>Aplicar</button>
+  </div>
 </ion-content>

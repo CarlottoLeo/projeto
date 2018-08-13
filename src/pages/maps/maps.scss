@@ -1,6 +1,6 @@
 page-maps {
   #map {
-    height: 70%;
+    height: 100%;
   }
   ion-list + ion-list {
     margin-top: 0;
@@ -9,4 +9,13 @@ page-maps {
   .small-text {
     font-size: 50px;
   }
+
+  .paddingTop{
+    padding-top: 10px !important;
+  }
+
+  .filtro{
+    background-color: white !important;
+  }
+
 }
