@@ -10,7 +10,6 @@ declare var google;
   templateUrl: 'maps.html',
 })
 
-
 export class MapsPage {
 
   distance: number = 500;
@@ -18,6 +17,13 @@ export class MapsPage {
 
   constructor(private geolocation: Geolocation) { }
 
+  public onButtonClick() {
+    var display = document.getElementById('filtro').style.display;
+    if (display == "none")
+    document.getElementById('filtro').style.display = 'block';
+    else
+    document.getElementById('filtro').style.display = 'none';
+  }
   public n: number = 1;
 
   ionViewDidLoad() {
@@ -56,7 +62,7 @@ export class MapsPage {
       infowindow.open(this.map, marker);
     });
 
-      google.maps.event.addListener(markerMe, 'click', function() {
+    google.maps.event.addListener(markerMe, 'click', function() {
       infowindow.open(this.map, markerMe);
     });
 
@@ -91,33 +97,33 @@ export class MapsPage {
       });
 
       new google.maps.Circle(
-      {
+        {
           map: map,
           center: new google.maps.LatLng(myCoords[0][1], myCoords[0][2]),
           radius: this.distance, // 1000 metros
           strokeColor: "blue",
           fillColor: "blue",
           fillOpacity: 0.1
-      });
+        });
 
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
 
-      google.maps.event.addListener(markerMe, 'click', (function(markerMe, i) {
-        return function() {
-          infowindow.setContent(myCoords[0][0]);
-          infowindow.open(map, markerMe);
-        }
-      })(markerMe, i));
+        google.maps.event.addListener(markerMe, 'click', (function(markerMe, i) {
+          return function() {
+            infowindow.setContent(myCoords[0][0]);
+            infowindow.open(map, markerMe);
+          }
+        })(markerMe, i));
 
-    }
+      }
 
-  }).catch((error) => {
-    console.log('Erro ao recuperar sua posição', error);
-  });
-}
+    }).catch((error) => {
+      console.log('Erro ao recuperar sua posição', error);
+    });
+  }
 }

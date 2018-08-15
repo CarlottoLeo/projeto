@@ -1,6 +1,6 @@
 page-maps {
   #map {
-    height: 100%;
+    height: 90%;
   }
   ion-list + ion-list {
     margin-top: 0;
@@ -15,6 +15,7 @@ page-maps {
   }
 
   .filtro{
+    display: none;
     background-color: white !important;
   }
 
